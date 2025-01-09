@@ -1,8 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
 // In-memory storage
 let prompts = [];
@@ -54,11 +54,7 @@ app.delete('/prompts/:id', (req, res) => {
   res.json(deleted);
 });
 
-// Allow all requests
-app.use((req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-});
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
